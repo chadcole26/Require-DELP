@@ -1,0 +1,33 @@
+<script>
+
+    var url             = window.location.pathname,
+        urlParts        = url.split('/'),
+        lastPart        = urlParts[urlParts.length-1],
+        delCheck        = '~[tlist_sql;
+                                select max(effectivedate)
+                                from s_stu_learningpref_c
+                                where studentsdcid = ~(studentrn)
+                                ]~(1;d)[/tlist_sql]',
+        lpDate         =  new Date ('~[pref:lastpromotiondate]'),
+        cdyr            = lpDate.getFullYear(),
+        cdmonth         = lpDate.getMonth() < 10 ? '0' + lpDate.getMonth() : lpDate.getMonth(),
+        cdday           = lpDate.getDate()  < 10 ? '0' + lpDate.getDate()  : lpDate.getDate(),
+        eoyDate         = cdmonth + '/' + cdday + '/' + cdyr;
+
+    //check to see if oldest DELP record is older than last EOY date
+    if (delCheck > eoyDate) {
+        // DELP has not been updated since EOY was run
+        // Check to see if parent is on the digital equity page
+        if (lastPart != 'digitalequity.html') {
+            // Parent is not on the digital equity page, load digital equity
+            (function() {
+		        window.location = 'digitalequity.html';
+	        })();
+        } else {
+        // Parent is on digital equity page
+        //Tell them they need to create an updated learning preference to be able to use the parent portal
+            $j('.box-round').before('<div class="feedback-alert"><p>The staff at ~(schoolname) need you to create an updated Digital Equity and Learning Preference for the current school year to continue using the parent portal. You will continue to be redirected to this page until a Digital Equity and Learning Prefernce has been submitted for the current school year.</p></div>');
+        };
+    };
+    
+</script>
