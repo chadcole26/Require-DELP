@@ -10,25 +10,32 @@
         var url             = window.location.pathname,
             urlParts        = url.split('/'),
             lastPart        = urlParts[urlParts.length-1],
-            delpCheck       = '~[tlist_sql;
+            maxDELP         = '~[tlist_sql;
                                     select max(effectivedate)
                                     from s_stu_learningpref_c
                                     where studentsdcid = ~(studentrn)
+                                    ]~(1)[/tlist_sql]',
+            firstDay        = '~[tlist_sql;
+                                    select firstday
+                                    from terms
+                                    where schoolid = ~(curschoolid)
+                                        and yearid = ~(curyearid)
+                                        and id = ~(curyearid)*100
                                     ]~(1)[/tlist_sql]';
     
-        // Check to see if active Digital Equity and Learning Preference exists
-        if (!delpCheck) {
-            // Digital Equity and Learning Preference does not exist
+        //check to see if oldest DELP record is older than last EOY date
+        if (!maxDELP || maxDELP < firstDay) {
+            // DELP has not been updated since EOY was run
             // Check to see if parent is on the digital equity page
             if (lastPart != 'digitalequity.html') {
-                // Parent is not on the digital equity page, load digital equity page
+                // Parent is not on the digital equity page, load digital equity
                 (function() {
     		        window.location = 'digitalequity.html';
     	        })();
             } else {
-            	// Parent is on digital equity page
-            	// Tell them they need to create a learning preference to be able to use the parent portal
-                $j('.box-round').before('<div class="feedback-alert"><p>The staff at ~(schoolname) need you to create a Digital Equity and Learning Preference for ~(first_name) to continue using the parent portal. You will continue to be redirected to this page until a Digital Equity and Learning Preference has been submitted for ~(first_name).</p></div>');
+            // Parent is on digital equity page
+            // Tell them they need to create an updated learning preference to be able to use the parent portal
+                $j('.box-round').before('<div class="feedback-alert"><p>The staff at ~(schoolname) need you to create an updated Digital Equity and Learning Preference for ~(first_name) for the current school year to continue using the parent portal. You will continue to be redirected to this page until a Digital Equity and Learning Preference has been submitted for ~(first_name) for the current school year.</p></div>');
             };
         };
         
