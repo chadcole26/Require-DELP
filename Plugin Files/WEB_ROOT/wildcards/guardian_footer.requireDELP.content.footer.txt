@@ -11,7 +11,7 @@
             urlParts        = url.split('/'),
             lastPart        = urlParts[urlParts.length-1],
             delpCheck       = '~[tlist_sql;
-                                    select max(effectivedate)
+                                    select distinct studentsdcid
                                     from s_stu_learningpref_c
                                     where studentsdcid = ~(studentrn)
                                     ]~(1)[/tlist_sql]';
