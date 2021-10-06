@@ -39,6 +39,10 @@
     <!-- Student Script -->
     <script>
     
+        $j(document).ready(function(){
+            $j('#btn-digitalequity').remove();
+        });
+        
         var url             = window.location.pathname,
             urlParts        = url.split('/'),
             lastPart        = urlParts[urlParts.length-1];
