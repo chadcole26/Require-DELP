@@ -1,0 +1,6 @@
+<!-- This script adds the Require DELP setup page to the District Information area of the District Setup page -->
+<script type="text/javascript">
+  $j(document).ready( function() {
+    $j('#table_id_district_information > tbody tr:eq(0)').after('<tr><td><a href="/admin/district/requireDELPSetup.html">Digital Equity &amp; Learning Preferences</a></td><td>Settings related to Digital Equity &amp; Learning Preferences</td></tr>');
+  });
+</script>

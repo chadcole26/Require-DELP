@@ -1,0 +1,41 @@
+<!-- check to see if DELP is enable on the public portal; if not, don't do anything -->
+~[if#delpenabled.pref.publicportal.enableLearningPreferences=1]
+
+	<!-- check to see if DELP should be remove for students; if not, don't do anything -->
+	~[if#studentremove.pref.disableLearningPreferencesStudents=1]
+
+		<!-- check to see if it is a guardian user; if not, run the student script -->
+		~[if#guardian.isguardian]
+		
+			<!-- Show the DELP Nav Icon to the user -->
+		
+		[else#guardian]
+		
+			<!-- remove the DELP Nav Icon and prevent the student from using the page -->
+			<script>
+	
+				$j(document).ready(function(){
+					$j('#btn-digitalequitystate').remove();
+				});
+		
+				var url             = window.location.pathname,
+					urlParts        = url.split('/'),
+					lastPart        = urlParts[urlParts.length-1];
+	
+				if (lastPart != 'NY_digitalequity.html') {
+					// Student is not on the digital equity page, do nothing
+				} else {
+					// Student is on digital equity page
+					// Move student back to grades and attendance
+					(function() {
+						window.location = 'home.html';
+					})();  
+				};
+		
+			</script>
+	
+		[/if#guardian]
+
+	[/if#studentremove]
+
+[/if#delpenabled]
