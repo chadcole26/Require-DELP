@@ -3,21 +3,50 @@
 	<head>
 		<title>Digital Equity &amp; Learning Preference Settings</title>
 		<!-- required scripts -->
-		 ~[wc:commonscripts] 
+		~[wc:commonscripts] 
 		<!-- Required style sheets: screen.css, and print.css --> 
-		 <link href="/images/css/screen.css" rel="stylesheet" media="screen">
-		 <link href="/images/css/print.css" rel="stylesheet" media="print">
+		<link href="/images/css/screen.css" rel="stylesheet" media="screen">
+		<link href="/images/css/print.css" rel="stylesheet" media="print">
+		<script>
+			
+			$j(document).ready(function () {
+				checkboxChecks();
+			});
+			
+			function checkboxChecks () {
+				if ( $j('#enableLearningPreferences').prop('checked') == false ) {
+					$j('#disableLearningPreferencesStudents').prop('checked',false);
+					$j('#disableLearningPreferencesStudents').attr('disabled', true);
+					$j('#requireLearningPreferencesParents').prop('checked',false);
+					$j('#requireLearningPreferencesParents').attr('disabled', true);
+				} else {
+					$j('#disableLearningPreferencesStudents').attr('disabled', false);
+					$j('#requireLearningPreferencesParents').attr('disabled', false);
+				};
+				if ( $j('#requireLearningPreferencesParents').prop('checked') == false ) {
+					$j('#requireLearningPreferencesActive').prop('checked',false);
+					$j('#requireLearningPreferencesActive').attr('disabled', true);
+					$j('#requireLearningPreferencesYearly').prop('checked',false);
+					$j('#requireLearningPreferencesYearly').attr('disabled', true);
+				} else {
+					$j('#requireLearningPreferencesActive').attr('disabled', false);
+					$j('#requireLearningPreferencesYearly').attr('disabled', false);
+				};
+			}
+
+
+		</script>
 	</head> 
 	<body>
 		<form action="/~[self.page]?action=success" method="POST" id="DELPSelectors">
 		 ~[wc:admin_header_css] 
 		<!-- breadcrumb start -->
-		<a href="/admin/home.html" target="_top">~[text:psx.html.admin_district.misc-district.start_page]</a> &gt; <a href="/admin/district/home.html" target="_top">~[text:psx.html.admin_district.misc-district.district_setup]</a> &gt;&nbsp;Digital Equity &amp; Learning Preference Settins
+		<a href="/admin/home.html" target="_top">~[text:psx.html.admin_district.misc-district.start_page]</a> &gt; <a href="/admin/district/home.html" target="_top">~[text:psx.html.admin_district.misc-district.district_setup]</a> &gt;&nbsp;Digital Equity &amp; Learning Preference Settings
 		<!-- breadcrumb end -->
 		<!-- start of main menu and content --> 
 		 ~[wc:admin_navigation_css] 
 		<!-- Start of Page -->
-		<h1>Digital Equity &amp; Learning Preference Settins</h1>
+		<h1>Digital Equity &amp; Learning Preference Settings</h1>
 		~[if.gpv.action=success]<div class="feedback-confirm">Successfully recorded changes</div>[/if]
 		<!-- start of content area --> 
 		<div class="box-round">
@@ -34,31 +63,42 @@
 							Enable Public Portal Digital Equity &amp; Learning Preference Data Entry
 						</td>
 						<td>
-							<input type="checkbox" value="1" name="[pref]enableLearningPreferences" id="enableLearningPreferences" />
+							<input type="checkbox" name="[pref]publicportal.enableLearningPreferences" id="enableLearningPreferences" value="1" onclick="checkboxChecks()" />
 						</td>
 					</tr>
 					<tr>
 						<td class="bold">
-							Disable Student Portal Digital Equity &amp; Learning Preference Data Entry
+							Disable Student Portal Digital Equity &amp; Learning Preference Data Entry/Access
 						</td>
 						<td>
-							<input type="checkbox" value="1" name="[pref]disableLearningPreferencesStudents" id="disableLearningPreferencesStudents" />
+							<input type="checkbox" name="[pref]disableLearningPreferencesStudents" id="disableLearningPreferencesStudents" value="1"  />
 						</td>
 					</tr>
 					<tr>
-						<td class="bold">
-							Require Digital Equity &amp; Learning Preference Entry to use Parent Portal Features
+						<td>
+							<span class="bold">Require Digital Equity &amp; Learning Preference Entry to use Parent Portal Features</span><br>
+							<span><em>A DELP record must exist for the student, otherwise user will be redirected to DELP page</em></span>
 						</td>
 						<td>
-							<input type="checkbox" value="1" name="[pref]requireLearningPreferencesParents" id="requireLearningPreferencesParents" />
+							<input type="checkbox" name="[pref]requireLearningPreferencesParents" id="requireLearningPreferencesParents" value="1" onclick="checkboxChecks()" />
 						</td>
 					</tr>
 					<tr>
-						<td class="bold">
-							Require New Digital Equity &amp; Learning Preference for Each School Year
+						<td>
+							<span class="bold">Require Active Digital Equity &amp; Learning Preference </span><br>
+							<span><em>A DELP record with an end date in the future (or no end date) must exist for the student, otherwise user will be redirected to DELP page</em></span>
 						</td>
 						<td>
-							<input type="checkbox" value="1" name="[pref]requireLearningPreferencesYearly" id="requireLearningPreferencesYearly" />
+							<input type="checkbox" name="[pref]requireLearningPreferencesActive" id="requireLearningPreferencesActive" value="1" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span class="bold">Require Digital Equity &amp; Learning Preference Entry for current school year</span><br>
+							<span><em>A DELP record with a start/effective date on or after the first day of school and an end date in the future (or no end date) must exist for the student for the current school year, otherwise user will be redirected to DELP page</em></span>
+						</td>
+						<td>
+							<input type="checkbox" name="[pref]requireLearningPreferencesYearly" id="requireLearningPreferencesYearly" value="1" />
 						</td>
 					</tr>
 				</tbody>

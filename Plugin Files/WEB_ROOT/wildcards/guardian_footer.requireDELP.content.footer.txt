@@ -1,64 +1,54 @@
 <!-- check to see if DELP is enable on the parent portal; if not, don't do anything -->
 ~[if#delpenabled.pref.publicportal.enableLearningPreferences=1]
 
-    <!-- check to see if it is a guardian user; if not, run the student script -->
+    <!-- check to see if it is a guardian user; if not, don't do anything -->
     ~[if#guardian.isguardian]
     
-    <!-- Guardian Script -->
-    <script>
+   		<!-- check to see if DELP is required on the parent portal; if not, don't do anything -->
+		~[if#delprequired.pref.requireLearningPreferencesParents=1]
     
-        var url             = window.location.pathname,
-            urlParts        = url.split('/'),
-            lastPart        = urlParts[urlParts.length-1],
-            delpCheck       = '~[tlist_sql;
-                                    select distinct studentsdcid
-                                    from s_stu_learningpref_c
-                                    where studentsdcid = ~(studentrn)
-                                    ]~(1)[/tlist_sql]';
+			<!-- Guardian Script -->
+			<script>
+	
+				var url             = window.location.pathname,
+					urlParts        = url.split('/'),
+					lastPart        = urlParts[urlParts.length-1],
+					delpCheck       = ~[tlist_sql;
+										SELECT COUNT(*)
+										FROM s_stu_learningpref_c
+										WHERE studentsdcid = ~(studentrn)
+											~[if#delpactive.pref.requireLearningPreferencesActive=1]
+											AND (enddate >= sysdate OR enddate IS NULL)
+											[/if#delpactive]
+											~[if#delpyearly.pref.requireLearningPreferencesYearly=1]
+											AND (
+													startdate >= TO_DATE('~(date.information;type=current_year_start)','~[datetext:mmddyyyy]') 
+													OR 
+													effectivedate >= TO_DATE('~(date.information;type=current_year_start)','~[datetext:mmddyyyy]')
+												)
+											[/if#delpyearly]
+											]~(1)[/tlist_sql];
+	
+				// Check to see if Digital Equity and Learning Preference exists
+				if ( delpCheck < 1 ) {
+					// Digital Equity and Learning Preference does not exist
+					// Check to see if parent is on the digital equity page
+					if (lastPart != 'digitalequity.html') {
+						// Parent is not on the digital equity page, load digital equity page
+						(function() {
+							window.location = 'digitalequity.html';
+						})();
+					} else {
+						// Parent is on digital equity page
+						// Tell them they need to create a learning preference to be able to use the parent portal
+						$j('.box-round').before('<div class="feedback-alert"><p>The staff at ~(schoolname) need you to create a Digital Equity and Learning Preference for ~(first_name) to continue using the parent portal. You will continue to be redirected to this page until a Digital Equity and Learning Preference has been submitted for ~(first_name).</p></div>');
+					};
+				};
+		
+			</script>
     
-        // Check to see if active Digital Equity and Learning Preference exists
-        if (!delpCheck) {
-            // Digital Equity and Learning Preference does not exist
-            // Check to see if parent is on the digital equity page
-            if (lastPart != 'digitalequity.html') {
-                // Parent is not on the digital equity page, load digital equity page
-                (function() {
-    		        window.location = 'digitalequity.html';
-    	        })();
-            } else {
-            	// Parent is on digital equity page
-            	// Tell them they need to create a learning preference to be able to use the parent portal
-                $j('.box-round').before('<div class="feedback-alert"><p>The staff at ~(schoolname) need you to create a Digital Equity and Learning Preference for ~(first_name) to continue using the parent portal. You will continue to be redirected to this page until a Digital Equity and Learning Preference has been submitted for ~(first_name).</p></div>');
-            };
-        };
-        
-    </script>
-    
-    [else#guardian]
-    
-    <!-- Student Script -->
-    <script>
-    
-        $j(document).ready(function(){
-            $j('#btn-digitalequity').remove();
-        });
-        
-        var url             = window.location.pathname,
-            urlParts        = url.split('/'),
-            lastPart        = urlParts[urlParts.length-1];
-    
-        if (lastPart != 'digitalequity.html') {
-            // Student is not on the digital equity page, do nothing
-        } else {
-            // Student is on digital equity page
-            // Move student back to grades and attendance
-            (function() {
-    	        window.location = 'home.html';
-            })();  
-        };
-        
-    </script>
+    	[/if#delprequired]
     
     [/if#guardian]
 
-[/if#delpenabled]A
+[/if#delpenabled]
