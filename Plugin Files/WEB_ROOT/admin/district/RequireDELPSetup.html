@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Digital Equity &amp; Learning Preference Settings</title>
+		<!-- required scripts -->
+		 ~[wc:commonscripts] 
+		<!-- Required style sheets: screen.css, and print.css --> 
+		 <link href="/images/css/screen.css" rel="stylesheet" media="screen">
+		 <link href="/images/css/print.css" rel="stylesheet" media="print">
+	</head> 
+	<body>
+		<form action="/~[self.page]?action=success" method="POST" id="DELPSelectors">
+		 ~[wc:admin_header_css] 
+		<!-- breadcrumb start -->
+		<a href="/admin/home.html" target="_top">~[text:psx.html.admin_district.misc-district.start_page]</a> &gt; <a href="/admin/district/home.html" target="_top">~[text:psx.html.admin_district.misc-district.district_setup]</a> &gt;&nbsp;Digital Equity &amp; Learning Preference Settins
+		<!-- breadcrumb end -->
+		<!-- start of main menu and content --> 
+		 ~[wc:admin_navigation_css] 
+		<!-- Start of Page -->
+		<h1>Digital Equity &amp; Learning Preference Settins</h1>
+		~[if.gpv.action=success]<div class="feedback-confirm">Successfully recorded changes</div>[/if]
+		<!-- start of content area --> 
+		<div class="box-round">
+			<table class="linkDescList"> 
+				<thead>
+					<tr>
+						<th class="bold">Digital Equity &amp; Learning Preference Setting</th>
+						<th class="bold">Value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="bold">
+							Enable Public Portal Digital Equity &amp; Learning Preference Data Entry
+						</td>
+						<td>
+							<input type="checkbox" value="1" name="[pref]enableLearningPreferences" id="enableLearningPreferences" />
+						</td>
+					</tr>
+					<tr>
+						<td class="bold">
+							Disable Student Portal Digital Equity &amp; Learning Preference Data Entry
+						</td>
+						<td>
+							<input type="checkbox" value="1" name="[pref]disableLearningPreferencesStudents" id="disableLearningPreferencesStudents" />
+						</td>
+					</tr>
+					<tr>
+						<td class="bold">
+							Require Digital Equity &amp; Learning Preference Entry to use Parent Portal Features
+						</td>
+						<td>
+							<input type="checkbox" value="1" name="[pref]requireLearningPreferencesParents" id="requireLearningPreferencesParents" />
+						</td>
+					</tr>
+					<tr>
+						<td class="bold">
+							Require New Digital Equity &amp; Learning Preference for Each School Year
+						</td>
+						<td>
+							<input type="checkbox" value="1" name="[pref]requireLearningPreferencesYearly" id="requireLearningPreferencesYearly" />
+						</td>
+					</tr>
+				</tbody>
+			</table>			
+			
+			<div class="button-row">
+				<input type="hidden" name="ac" value="prim">~[submitbutton]
+			</div>
+
+		 </div> 
+		 </form>
+		<!-- end of content area --> 
+		 ~[wc:admin_footer_css] 
+	</body> 
+</html>

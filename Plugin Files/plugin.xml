@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://plugin.powerschool.pearson.com" 
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-  description="Require parents to submit a Digital Equity and Learning Preference" 
-  name="Parent Portal - Require DELP" 
-  version="1.0" 
+  description="Digital Equity and Learning Preference display and requirement settings" 
+  name="Parent Portal: DELP Settings Plugin" 
+  version="1.1" 
   xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd">
   <publisher name="Chad Cole">
     <contact email="chadacole@gmail.com"/>
