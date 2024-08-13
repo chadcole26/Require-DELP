@@ -1,7 +1,7 @@
-<!-- check to see if DELP is enable on the public portal; if not, don't do anything -->
+<!-- check to see if DELP is enabled on the public portal; if not, don't do anything -->
 ~[if#delpenabled.pref.publicportal.enableLearningPreferences=1]
 
-	<!-- check to see if DELP should be remove for students; if not, don't do anything -->
+	<!-- check to see if DELP should be removed for students; if not, don't do anything -->
 	~[if#studentremove.pref.disableLearningPreferencesStudents=1]
 
 		<!-- check to see if it is a guardian user; if not, run the student script -->

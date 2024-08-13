@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Digital Equity &amp; Learning Preference Settings</title>
+		<title>Digital Equity and Learning Preference Settings</title>
 		<!-- required scripts -->
 		~[wc:commonscripts] 
 		<!-- Required style sheets: screen.css, and print.css --> 
@@ -41,26 +41,26 @@
 		<form action="/~[self.page]?action=success" method="POST" id="DELPSelectors">
 		 ~[wc:admin_header_css] 
 		<!-- breadcrumb start -->
-		<a href="/admin/home.html" target="_top">~[text:psx.html.admin_district.misc-district.start_page]</a> &gt; <a href="/admin/district/home.html" target="_top">~[text:psx.html.admin_district.misc-district.district_setup]</a> &gt;&nbsp;Digital Equity &amp; Learning Preference Settings
+		<a href="/admin/home.html" target="_top">~[text:psx.html.admin_district.misc-district.start_page]</a> &gt; <a href="/admin/district/home.html" target="_top">~[text:psx.html.admin_district.misc-district.district_setup]</a> &gt;&nbsp;Digital Equity and Learning Preference Settings
 		<!-- breadcrumb end -->
 		<!-- start of main menu and content --> 
 		 ~[wc:admin_navigation_css] 
 		<!-- Start of Page -->
-		<h1>Digital Equity &amp; Learning Preference Settings</h1>
+		<h1>Digital Equity and Learning Preference Settings</h1>
 		~[if.gpv.action=success]<div class="feedback-confirm">Successfully recorded changes</div>[/if]
 		<!-- start of content area --> 
 		<div class="box-round">
 			<table class="linkDescList"> 
 				<thead>
 					<tr>
-						<th class="bold">Digital Equity &amp; Learning Preference Setting</th>
+						<th class="bold">Digital Equity and Learning Preference Settings</th>
 						<th class="bold">Value</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td class="bold">
-							Enable Public Portal Digital Equity &amp; Learning Preference Data Entry
+							Enable Public Portal Digital Equity and Learning Preference Data Entry
 						</td>
 						<td>
 							<input type="checkbox" name="[pref]publicportal.enableLearningPreferences" id="enableLearningPreferences" value="1" onclick="checkboxChecks()" />
@@ -68,7 +68,7 @@
 					</tr>
 					<tr>
 						<td class="bold">
-							Disable Student Portal Digital Equity &amp; Learning Preference Data Entry/Access
+							Disable Student Portal Digital Equity and Learning Preference Data Entry/Access
 						</td>
 						<td>
 							<input type="checkbox" name="[pref]disableLearningPreferencesStudents" id="disableLearningPreferencesStudents" value="1"  />
@@ -76,7 +76,7 @@
 					</tr>
 					<tr>
 						<td>
-							<span class="bold">Require Digital Equity &amp; Learning Preference Entry to use Parent Portal Features</span><br>
+							<span class="bold">Require Digital Equity and Learning Preference Entry to use Parent Portal Features</span><br>
 							<span><em>A DELP record must exist for the student, otherwise user will be redirected to DELP page</em></span>
 						</td>
 						<td>
@@ -85,7 +85,7 @@
 					</tr>
 					<tr>
 						<td>
-							<span class="bold">Require Active Digital Equity &amp; Learning Preference </span><br>
+							<span class="bold">Require Active Digital Equity and Learning Preference</span><br>
 							<span><em>A DELP record with an end date in the future (or no end date) must exist for the student, otherwise user will be redirected to DELP page</em></span>
 						</td>
 						<td>
@@ -94,7 +94,7 @@
 					</tr>
 					<tr>
 						<td>
-							<span class="bold">Require Digital Equity &amp; Learning Preference Entry for current school year</span><br>
+							<span class="bold">Require Digital Equity and Learning Preference Entry for current school year</span><br>
 							<span><em>A DELP record with a start/effective date on or after the first day of school and an end date in the future (or no end date) must exist for the student for the current school year, otherwise user will be redirected to DELP page</em></span>
 						</td>
 						<td>

@@ -1,4 +1,4 @@
-<!-- check to see if DELP is enable on the parent portal; if not, don't do anything -->
+<!-- check to see if DELP is enabled on the parent portal; if not, don't do anything -->
 ~[if#delpenabled.pref.publicportal.enableLearningPreferences=1]
 
     <!-- check to see if it is a guardian user; if not, don't do anything -->

@@ -1,0 +1,15 @@
+{ 
+	"pages": [ 
+		{
+		  "htmlID": "navDistrictRequireDELPSetup",
+		  "title": "psx.htmlc.admin.district.requireDLEP_preferences",
+		  "version": "24.8.0.0",
+		  "contextType": "main",
+		  "sortOrder": 250,
+		  "pageURL": "/admin/district/requireDELPSetup.html",
+		  "pageDescription": "Digital Equity and Learning Preference display and requirement settings when using the Require DELP plugin from the Powersource Community Exchange",
+		  "districtLevelContext": 2,
+		  "parentHTMLID": "navDistrictManagementDisplayPreferences"
+		}
+	]
+}
